@@ -1,0 +1,59 @@
+version: "3"
+networks:
+  monitor-br:
+    driver: bridge
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    user: root
+#    restart: always
+    ports:
+      - "${PROM_PORT:-9090}:9090"
+    volumes:
+      - ${CONFIG_BASE_DIR:-./conf}/prometheus:/etc/prometheus
+      - ${DATA_DIR:-./data}/prometheus/prometheus_db:/prometheus 
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    networks:
+      - monitor-br
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    user: root
+#    restart: always
+    ports:
+      - "${GRAF_PORT:-3000}:3000"
+    volumes:
+      - ${CONFIG_BASE_DIR:-./conf}/grafana:/etc/grafana
+      - ${DATA_DIR:-./data}/prometheus/grafana_data:/var/lib/grafana
+    depends_on:  
+      - prometheus
+    networks:
+      - monitor-br
+
+#   pushgateway:
+#     image: prom/pushgateway
+#     container_name: pushgateway
+#     user: root
+# #    restart: always
+#     ports:
+#       - "9091:9091"
+#     volumes:
+#       - ./data/prometheus/pushgateway_data:/var/lib/pushgateway
+
+#   alertmanager:
+#     image: prom/alertmanager
+#     hostname: alertmanager
+#     container_name: alertmanager
+#     user: root
+# #    restart: always
+#     ports:
+#       - "9093:9093"
+#     volumes:
+#       - ./conf/alertmanager:/etc/alertmanager
+#       - ./data/prometheus/alertmanager_data:/var/lib/alertmanager
