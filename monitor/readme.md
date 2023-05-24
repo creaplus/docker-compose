@@ -5,5 +5,5 @@
 
 [ docker-compose1 ](https://github.com/Kev1nChan/docker-prometheus/blob/master/docker-compose.yml)
 
-[【Prometheus+Grafana系列】基于docker-compose搭建](https://developer.aliyun.com/article/1158325)
+[【Prometheus+Grafana系列】基于docker-compose搭建](https://learnku.com/articles/71116)
 
