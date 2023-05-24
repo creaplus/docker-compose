@@ -8,7 +8,7 @@ services:
   prometheus:
     image: prom/prometheus:latest
     container_name: ${CONTAINER_NAME:-monitor}_prometheus
-    user: ${GRAFANA_USER}
+    user: root
     restart: always
     ports:
       - "9090:9090"
@@ -29,10 +29,13 @@ services:
     ports:
       - "3000:3000"
     restart: always
-    user: ${GRAFANA_USER}
+    user: root
+    environment:
+      TZ: Asia/Shanghai
+      GF_INSTALL_PLUGINS: grafana-zh-cn-panel
     volumes:
       - "${DATA_PATH}/grafana_data:/var/lib/grafana"
-      # - $PWD/conf/grafana/provisioning/:/etc/grafana/provisioning/
+      - $PWD/conf/grafana/:/etc/grafana/
     depends_on:
       - prometheus
     networks:
