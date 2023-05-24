@@ -34,6 +34,6 @@ services:
       - "${DATA_PATH}/grafana_data:/var/lib/grafana"
       # - $PWD/conf/grafana/provisioning/:/etc/grafana/provisioning/
     depends_on:
-      - ${CONTAINER_NAME:-monitor}_prometheus
+      - prometheus
     networks:
       - monitor-br
