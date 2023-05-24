@@ -1,0 +1,39 @@
+version: "3"
+
+networks:
+  monitor-br:
+    driver: bridge
+
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: ${CONTAINER_NAME:-monitor}_prometheus
+    user: ${GRAFANA_USER}
+    restart: always
+    ports:
+      - "9090:9090"
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    volumes:
+      - "$PWD/conf/prometheus/:/etc/prometheus/"
+      - "${DATA_PATH}/prometheus_data:/prometheus"
+    networks:
+      - monitor-br
+
+  grafana:
+    image: grafana/grafana
+    container_name: ${CONTAINER_NAME:-monitor}_grafana
+    ports:
+      - "3000:3000"
+    restart: always
+    user: ${GRAFANA_USER}
+    volumes:
+      - "${DATA_PATH}/grafana_data:/var/lib/grafana"
+      # - $PWD/conf/grafana/provisioning/:/etc/grafana/provisioning/
+    depends_on:
+      - ${CONTAINER_NAME:-monitor}_prometheus
+    networks:
+      - monitor-br
