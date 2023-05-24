@@ -32,7 +32,7 @@ services:
     user: root
     environment:
       TZ: Asia/Shanghai
-      GF_INSTALL_PLUGINS: grafana-zh-cn-panel
+      GF_INSTALL_PLUGINS: ${GF_INSTALL_PLUGINS:-''}
     volumes:
       - "${DATA_PATH}/grafana_data:/var/lib/grafana"
       - $PWD/conf/grafana/:/etc/grafana/
