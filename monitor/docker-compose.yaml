@@ -3,6 +3,8 @@ version: "3"
 networks:
   monitor-br:
     driver: bridge
+  web_net:
+    external: true
 
 services:
   prometheus:
@@ -40,3 +42,4 @@ services:
       - prometheus
     networks:
       - monitor-br
+      - web_net
