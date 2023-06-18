@@ -3,7 +3,7 @@ version: '3'
 networks:
   rustdesk-net:
     external: false
-    driver: host
+    # driver: host
 
 services:
   hbbs:
@@ -14,7 +14,7 @@ services:
       - 21116:21116/udp
       - 21118:21118
     image: rustdesk/rustdesk-server:latest
-    command: hbbs -r ${HOST_NAME}:21117 -m ${EMAIL} -k ${CLIENT_KEY}
+    command: hbbs -r ${HOST_NAME}:21117 -k ${CLIENT_KEY}
     volumes:
       - ${DATA_PATH}/data:/root
     networks:
@@ -29,7 +29,7 @@ services:
       - 21117:21117
       - 21119:21119
     image: rustdesk/rustdesk-server:latest
-    command: hbbr -m ${EMAIL} -k ${CLIENT_KEY}
+    command: hbbr -k ${CLIENT_KEY}
     volumes:
       - ${DATA_PATH}/data:/root
     networks:
