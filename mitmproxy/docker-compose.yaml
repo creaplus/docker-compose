@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mitmproxy:
-    container_name: ${CONTAINER_NAME}_hbbs
+    container_name: mitmproxy_tools
     ports:
       - 8080:8080
     image: mitmproxy/mitmproxy:latest
