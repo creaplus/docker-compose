@@ -2,9 +2,11 @@ version: '3'
 
 services:
   mitmproxy:
-    container_name: mitmproxy_tools
+    container_name: ${CONTAINER_NAME:-mitmproxy_tools}
     ports:
-      - 8080:8080
+      - ${PROXY_PORT:-8080}:8080
+      - ${WEBUI_PORT:-8181}:8081
     image: mitmproxy/mitmproxy:latest
+    command: mitmweb --web-host 0.0.0.0
     volumes:
       - ${DATA_PATH:-$PWD}/mitmproxy:/home/mitmproxy/.mitmproxy
