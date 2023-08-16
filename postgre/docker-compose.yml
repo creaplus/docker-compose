@@ -6,7 +6,6 @@ services:
     container_name: ${CONTAINER_NAME:-postgredb}
     restart: always
     environment:
-      POSTGRES_USER: ${USER}
       POSTGRES_PASSWORD: ${PASSWORD}
     volumes:
       - ${PGDATA:-$PWD}/data:/var/lib/postgresql/data
