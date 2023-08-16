@@ -12,11 +12,11 @@ services:
     ports:
       - 5432:${PGPORT:-5432}
     
-  pgadminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:${PG_ADMIN_PORT:-8584}
+  # pgadminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:${PG_ADMIN_PORT:-8584}
 
 networks:
   web_net:
