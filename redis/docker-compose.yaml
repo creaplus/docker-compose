@@ -7,7 +7,7 @@ services:
     # docker的重启策略：在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器
     # command: redis-server /usr/local/etc/redis/redis.conf TODO
     ports:
-      - 6379:6379
+      - 6379:${PORT:-6379}
     volumes:
       - ${DATA_PATH:-$PWD}/data:/data
       # - $PWD/redis.conf:/usr/local/etc/redis/redis.conf TODO
