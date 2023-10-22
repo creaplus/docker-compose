@@ -7,3 +7,4 @@
 
 [【Prometheus+Grafana系列】基于docker-compose搭建](https://learnku.com/articles/71116)
 
+[prom/mysqld-exporter](https://juejin.cn/post/7019643928970264583)
