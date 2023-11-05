@@ -37,6 +37,7 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--web.console.libraries=/usr/share/prometheus/console_libraries'
       - '--web.console.templates=/usr/share/prometheus/consoles'
+      - '--storage.tsdb.retention.time=60d'
     volumes:
       - "$PWD/conf/prometheus/:/etc/prometheus/"
       - "${DATA_PATH}/prometheus_data:/prometheus"
@@ -46,11 +47,23 @@ services:
   mysqlexporter:
     image: prom/mysqld-exporter
     container_name: ${CONTAINER_NAME:-monitor}_mysqlexporter
-    ports:
-      - "9104:9104"
+    # ports:
+    #   - "9104:9104"
     environment:
       - DATA_SOURCE_NAME=monitor:monitor@(192.168.3.2:3306)/
     volumes:
       - $PWD/conf/exporter/.my.cnf:/.my.cnf
     networks:
       - monitor-br
+      
+  # redisexporter:
+  #   image: oliver006/redis_exporter
+  #   container_name: ${CONTAINER_NAME:-monitor}_redisexporter
+  #   ports:
+  #     - "9121:9121"
+  #   environment:
+  #     - DATA_SOURCE_NAME=monitor:monitor@(192.168.3.2:3306)/
+  #   volumes:
+  #     - $PWD/conf/exporter/.my.cnf:/.my.cnf
+  #   networks:
+  #     - monitor-br
