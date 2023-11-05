@@ -7,7 +7,6 @@ scrape_configs:
     - targets:
       - monitor_mysqlexporter:9104
   # - job_name: redisexporter
-  #   scrape_interval: 5s
   #   static_configs:
   #   - targets:
-  #     - monitor_redisexporter:9121
+  #     - redis_redisexporter:9121

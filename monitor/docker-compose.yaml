@@ -55,15 +55,14 @@ services:
       - $PWD/conf/exporter/.my.cnf:/.my.cnf
     networks:
       - monitor-br
-      
+
   # redisexporter:
   #   image: oliver006/redis_exporter
   #   container_name: ${CONTAINER_NAME:-monitor}_redisexporter
-  #   ports:
-  #     - "9121:9121"
+  #   # ports:
+  #   #   - "9121:9121"
   #   environment:
-  #     - DATA_SOURCE_NAME=monitor:monitor@(192.168.3.2:3306)/
-  #   volumes:
-  #     - $PWD/conf/exporter/.my.cnf:/.my.cnf
+  #     - REDIS_ADDR=redis://192.168.3.2:6379
+  #     - REDIS_PASSWORD=sj4ykQRd
   #   networks:
   #     - monitor-br

@@ -12,4 +12,5 @@
 
 [mysqld-exporter](https://grafana.com/oss/prometheus/exporters/mysql-exporter/)
 [redis-exporter](https://grafana.com/oss/prometheus/exporters/redis-exporter/)
+[redis-exporter-config](https://github.com/oliver006/redis_exporter)
 
