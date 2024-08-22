@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  neo4j:
+    image: neo4j
+    container_name: ${CONTAINER_NAME:-neo4j}
+    environment:
+      NEO4J_AUTH: ${NEO4J_AUTH:-neo4j/password}
+    ports:
+      - ${PORT:-7474}:7474
+      - ${BOLT_PORT:-7687}:7687
+    volumes:
+      - ${DATA_PATH:-$PWD}/data:/data
+      - ${DATA_PATH:-$PWD}/logs:/logs
+    networks:
+      - web_net
+networks:
+  web_net:
+    external: true
+    
