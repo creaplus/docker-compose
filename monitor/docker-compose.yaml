@@ -41,6 +41,8 @@ services:
     volumes:
       - "$PWD/conf/prometheus/:/etc/prometheus/"
       - "${DATA_PATH}/prometheus_data:/prometheus"
+    depends_on:
+      - mysqlexporter
     networks:
       - monitor-br
 
@@ -53,6 +55,7 @@ services:
       - DATA_SOURCE_NAME=monitor:monitor@(192.168.3.2:3306)/
     volumes:
       - $PWD/conf/exporter/.my.cnf:/.my.cnf
+    restart: always
     networks:
       - monitor-br
 
