@@ -6,7 +6,6 @@ services:
       - ${PORT:-8080}:8080
     volumes:
       - ${DATA_PATH:-$PWD}/data:/app/backend/data
-      # - $PWD/redis.conf:/usr/local/etc/redis/redis.conf TODO
     restart: unless-stopped
     networks:
       - web_net
