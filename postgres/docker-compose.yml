@@ -1,24 +1,21 @@
-version: '3.9'
-
 services:
   pgdb:
-    image: postgres
-    container_name: ${CONTAINER_NAME:-postgresdb}
+    build:
+      context: ./build
+      dockerfile: Dockerfile
+    container_name: ${CONTAINER_NAME:-postgres}
     shm_size: 128mb
-    restart: always
+    restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      PGDATA: /var/lib/postgresql/data
+      # POSTGRES_INITDB_ARGS:
     volumes:
-      - ${PGDATA:-$PWD}/data:/var/lib/postgresql/data
+      - ${DATA_PATH:-$PWD}:/var/lib/postgresql/data
     ports:
       - ${PGPORT:-5432}:5432
-    
-  pgadminer:
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - ${PG_ADMIN_PORT:-8584}:8080
-
 networks:
   web_net:
     external: true
