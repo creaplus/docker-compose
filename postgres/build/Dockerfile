@@ -14,19 +14,19 @@ RUN apt-get update && \
 RUN wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | gpg --dearmor -o /etc/apt/trusted.gpg.d/timescaledb.gpg && \
     echo "deb https://packagecloud.io/timescale/timescaledb/debian/ $(lsb_release -c -s) main" > /etc/apt/sources.list.d/timescaledb.list
 
-## 增加 pigsty 源
-# RUN curl -fsSL https://repo.pigsty.io/key | gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg && \
-#     tee /etc/apt/sources.list.d/pigsty-io.list > /dev/null <<EOF
-# deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/infra generic main 
-# deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/pgsql/$(lsb_release -cs) $(lsb_release -cs) main
-# EOF
+# 增加 pigsty 源
+RUN curl -fsSL https://repo.pigsty.io/key | gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg && \
+    tee /etc/apt/sources.list.d/pigsty-io.list > /dev/null <<EOF
+deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/infra generic main 
+deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/pgsql/$(lsb_release -cs) $(lsb_release -cs) main
+EOF
 
 # 更新包信息
 RUN apt-get update 
 
 # 安装 timescaleDB pgvector pgmq
 RUN apt-get install -y --no-install-recommends \
-    postgresql-client-17 timescaledb-2-postgresql-17 postgresql-17-pgvector  postgresql-17-pgmq
+    postgresql-client-17 timescaledb-2-postgresql-17 postgresql-17-pgvector postgresql-17-pgmq
 
     # TODD
     # postgresql-17-cron 
