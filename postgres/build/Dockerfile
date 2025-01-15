@@ -26,7 +26,7 @@ RUN apt-get update
 
 # 安装 timescaleDB pgvector pgmq
 RUN apt-get install -y --no-install-recommends \
-    postgresql-client-17 timescaledb-2-postgresql-17 postgresql-17-pgvector postgresql-17-pgmq
+    postgresql-client-17 timescaledb-2-postgresql-17 postgresql-17-pgvector postgresql-17-pgmq postgresql-17-cron postgresql-17-pg-vectorize
 
     # TODD
     # postgresql-17-cron 

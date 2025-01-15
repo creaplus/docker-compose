@@ -15,9 +15,9 @@
 - [X] timescaledb 时序数据库扩展插件
 - [X] pgvector 向量数据类型和 ivfflat / hnsw 访问方法
 - [X] pgmq 基于Postgres实现类似AWS SQS/RSMQ的消息队列
+- [X] pg_stat_statements 跟踪所有执行的 SQL 语句的计划和执行统计信息
 - [-] pg_vectorize 在PostgreSQL中封装RAG向量检索服务
 - [] pg_summarize 使用LLM对文本字段进行总结
-- [] pg_stat_statements 跟踪所有执行的 SQL 语句的计划和执行统计信息
 - [] pg_cron 定时任务调度器
 - [] jsquery 用于内省 JSONB 数据类型的查询类型
 - [] postgis PostGIS 几何和地理空间扩展
