@@ -10,6 +10,7 @@
 * [pg_stat_statements Note](https://www.postgresql.org/docs/current/pgstatstatements.html)
 * [pg_stat_statements Config](https://www.postgresql.org/docs/current/pgstatstatements.html#PGSTATSTATEMENTS-PG-STAT-STATEMENTS-INFO)
 * [index_advisor Install](https://github.com/supabase/index_advisor)
+* [wal2json install](https://github.com/eulerto/wal2json)
 * []()
 # 支持情况
 - [X] timescaledb 时序数据库扩展插件
@@ -17,6 +18,7 @@
 - [X] pgmq 基于Postgres实现类似AWS SQS/RSMQ的消息队列
 - [X] pg_stat_statements 跟踪所有执行的 SQL 语句的计划和执行统计信息
 - [-] pg_vectorize 在PostgreSQL中封装RAG向量检索服务
+- [-] wal2json 每个事务生成一个JSON对象 类似mysql binlog
 - [] pg_summarize 使用LLM对文本字段进行总结
 - [] pg_cron 定时任务调度器
 - [] jsquery 用于内省 JSONB 数据类型的查询类型

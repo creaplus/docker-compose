@@ -3,6 +3,8 @@ set -e
 
 echo "shared_preload_libraries = 'timescaledb,pg_stat_statements,pg_cron,vectorize'" >> $PGDATA/postgresql.conf
 echo "cron.database_name = 'postgres'" >> $PGDATA/postgresql.conf
+echo "wal_level = logical" >> $PGDATA/postgresql.conf
+
 
 pg_ctl -D $PGDATA restart
 
