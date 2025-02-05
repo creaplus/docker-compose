@@ -1,0 +1,20 @@
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: ${CONTAINER_NAME:-minio}
+    command: server --console-address ":9001" /data{1...${MAX_VOLUMES:-2}}
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    restart: unless-stopped
+    ports:
+      - "${PORT:-9000}:9000"
+      - "${ADMIN_PORT:-9001}:9001"
+    volumes:
+      - ${VOLUMES_DATA_PATH1:-$PWD/1}:/data1
+      - ${VOLUMES_DATA_PATH2:-$PWD/2}:/data2
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
