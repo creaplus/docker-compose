@@ -1,7 +1,7 @@
 # Dify
 
 ## 配置说明
-1. cp .env.example .env  更新 `Self Config`相关配置
+1. cp docker/.env.example .env  更新 `Self Config`相关配置
 2. docker compose up --build -d 
 3. 参考nginx模板配置自己的 反向代理
 4. 访问域名 http[s]://you_host/install 进行初始化
