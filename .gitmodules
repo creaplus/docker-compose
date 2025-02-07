@@ -1,3 +1,6 @@
 [submodule "dify/dify-office"]
 	path = dify/dify-office
 	url = https://github.com/langgenius/dify.git
+[submodule "firecrawl/office-src"]
+	path = firecrawl/office-src
+	url = https://github.com/mendableai/firecrawl.git
