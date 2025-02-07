@@ -22,3 +22,19 @@ git submodule update  # 从子模块仓库中拉取数据并检出合适的提�
 # 拉取子模块的最新提交
 git submodule update --remote
 ```
+
+## 常用api
+```curl
+curl -X POST http://localhost:3002/v1/crawl \
+    -H 'Content-Type: application/json' \
+    -H 'Authorization: Bearer this_is_just_a_preview_token' \
+    -d '{
+      "url": "https://mendable.ai"
+    }'
+
+curl -X POST http://home-server:3002/v1/crawl \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "url": "https://mendable.ai"
+    }'
+```
