@@ -1,5 +1,5 @@
 # 使用官方的PostgreSQL镜像作为基础镜像
-FROM postgres:17.2
+FROM postgres:17
 
 
 # 设置环境变量
@@ -14,11 +14,13 @@ RUN apt-get update && \
 RUN wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | gpg --dearmor -o /etc/apt/trusted.gpg.d/timescaledb.gpg && \
     echo "deb https://packagecloud.io/timescale/timescaledb/debian/ $(lsb_release -c -s) main" > /etc/apt/sources.list.d/timescaledb.list
 
-# 增加 pigsty 源
-RUN curl -fsSL https://repo.pigsty.io/key | gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg && \
+
+# 将 pigsty 的 gpg 公钥添加到你的系统钥匙链中，从而验证软件包签名
+RUN curl -fsSL https://repo.pigsty.cc/key | gpg --dearmor -o /etc/apt/keyrings/pigsty.gpg && \
+    distro_codename=$(lsb_release -cs) && \
     tee /etc/apt/sources.list.d/pigsty-io.list > /dev/null <<EOF
-deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/infra generic main 
-deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.io/apt/pgsql/$(lsb_release -cs) $(lsb_release -cs) main
+deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.cc/apt/infra generic main
+deb [signed-by=/etc/apt/keyrings/pigsty.gpg] https://repo.pigsty.cc/apt/pgsql/${distro_codename} ${distro_codename} main
 EOF
 
 # 更新包信息
