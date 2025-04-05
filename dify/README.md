@@ -1,5 +1,8 @@
 # Dify
 
+## Change log 
+* 跟进官方版本1.1.3
+
 ## 配置说明
 1. cp docker/.env.example .env  更新 `Self Config`相关配置
 2. docker compose up --build -d 
