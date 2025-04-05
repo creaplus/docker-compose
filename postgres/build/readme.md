@@ -20,7 +20,8 @@
 - [-] pg_vectorize 在PostgreSQL中封装RAG向量检索服务
 - [-] wal2json 每个事务生成一个JSON对象 类似mysql binlog
 - [] pg_summarize 使用LLM对文本字段进行总结
-- [] pg_cron 定时任务调度器
+- [X] pg_cron 定时任务调度器
+- [X] aws_s3 从S3导入导出数据的外部数据源包装器
 - [] jsquery 用于内省 JSONB 数据类型的查询类型
 - [] postgis PostGIS 几何和地理空间扩展
 - [] pg_background 在后台运行 SQL 查询

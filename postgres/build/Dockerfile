@@ -28,9 +28,8 @@ RUN apt-get update
 
 # 安装常用扩展
 RUN apt-get install -y --no-install-recommends \
-    postgresql-client-17 timescaledb-2-postgresql-17 postgresql-17-pgvector postgresql-17-pgmq postgresql-17-cron postgresql-17-pg-vectorize postgresql-17-wal2json
+    postgresql-client-17 timescaledb-2-postgresql-17 postgresql-17-pgvector postgresql-17-pgmq postgresql-17-cron postgresql-17-pg-vectorize postgresql-17-wal2json postgresql-17-aws-s3
 
-    # TODD
 # 清理减小镜像大小
 RUN rm -rf /var/lib/apt/lists/*
 
