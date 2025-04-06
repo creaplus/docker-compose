@@ -4,7 +4,7 @@ services:
     container_name: ${CONTAINER_NAME:-searxng}
     restart: unless-stopped
     environment:
-      - SEARXNG_BASE_URL=https://${SEARXNG_HOSTNAME:-localhost}/
+      - SEARXNG_BASE_URL=${SEARXNG_HOSTNAME:-http://localhost}
       - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
       - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
     ports:
