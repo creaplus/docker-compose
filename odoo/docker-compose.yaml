@@ -1,0 +1,29 @@
+services:
+  web:
+    image: odoo:18.0
+    depends_on:
+      - db
+    ports:
+      - "${PORT:-8069}:8069"
+    volumes:
+      - ${DATA_PATH:-$PWD}/data:/var/lib/odoo
+      # - ${DATA_PATH:-$PWD}/config:/etc/odoo
+      - ${DATA_PATH:-$PWD}/addons:/mnt/extra-addons
+    # environment:
+    #   - HOST=db
+    #   - USER=odoo
+    #   - PASSWORD=odoo
+
+  db:
+    image: postgres:17
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-postgres}
+      - POSTGRES_USER=${POSTGRES_USER:-odoo}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-odoo}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ${DATA_PATH:-$PWD}/pgdata:/var/lib/postgresql/data/pgdata
+
+networks:
+  web_net:
+    external: true

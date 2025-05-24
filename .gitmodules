@@ -4,3 +4,6 @@
 [submodule "firecrawl/office-src"]
 	path = firecrawl/office-src
 	url = https://github.com/mendableai/firecrawl.git
+[submodule "co-sight/Co-Sight"]
+	path = co-sight/Co-Sight
+	url = https://github.com/ZTE-AICloud/Co-Sight.git
