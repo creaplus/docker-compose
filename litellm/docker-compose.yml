@@ -1,12 +1,12 @@
 services:
   litellm:
-    build:
-      context: litellm/
-      args:
-        target: runtime
+    # build:
+    #   context: litellm/
+    #   args:
+    #     target: runtime
     container_name: ${CONTAINER_NAME:-litellm}
     restart: unless-stopped
-    image: docker.litellm.ai/berriai/litellm:main-stable
+    image: litellm/litellm:v1.82.0-stable
     #########################################
     ## Uncomment these lines to start proxy with a config.yaml file ##
     # volumes:

@@ -1,8 +1,6 @@
 networks:
   rustdesk-net:
     external: false
-    # driver: host
-
 services:
   hbbs:
     container_name: ${CONTAINER_NAME}_hbbs
@@ -10,9 +8,8 @@ services:
       - 21115:21115
       - 21116:21116
       - 21116:21116/udp
-      # - 21118:21118
     image: rustdesk/rustdesk-server:latest
-    command: hbbs -r ${HOST_NAME}:21117 -k ${CLIENT_KEY}
+    command: hbbs -r home.creplus.cn:21117
     volumes:
       - ${DATA_PATH}/data:/root
     networks:
@@ -27,7 +24,7 @@ services:
       - 21117:21117
       - 21119:21119
     image: rustdesk/rustdesk-server:latest
-    command: hbbr -k ${CLIENT_KEY}
+    command: hbbr
     volumes:
       - ${DATA_PATH}/data:/root
     networks:

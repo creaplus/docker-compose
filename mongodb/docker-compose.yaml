@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    restart: unless-stopped
+    container_name: ${CONTAINER_NAME:-mongodb}
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${ROOT_PASSWORD:-example}
+    volumes:
+      - ${DATA_PATH:-$PWD}/data:/data/db
+    ports:
+      - ${PORT:-27017}:27017
+
+networks:
+  web_net:
+    external: true
