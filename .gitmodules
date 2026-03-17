@@ -7,3 +7,6 @@
 [submodule "co-sight/Co-Sight"]
 	path = co-sight/Co-Sight
 	url = https://github.com/ZTE-AICloud/Co-Sight.git
+[submodule "litellm/litellm"]
+	path = litellm/litellm
+	url = https://github.com/BerriAI/litellm.git
