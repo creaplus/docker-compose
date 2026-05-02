@@ -1,0 +1,49 @@
+services:
+  hermes:
+    image: nousresearch/hermes-agent:latest
+    container_name: ${CONTAINER_NAME:-hermes}
+    restart: unless-stopped
+    command: gateway run
+    ports:
+      - "${PORT:-8642}:8642"
+    # 与官方示例一致：挂载 Hermes 主目录（含 .env、config.yaml），勿多加一层 data/
+    volumes:
+      - ${DATA_PATH:-$PWD}:/opt/data
+    networks:
+      - hermes-net
+    # 以下密钥也可在此展开，或写在 ${DATA_PATH}/.env
+    # environment:
+    #   - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    #   - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #   - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+          cpus: "2.0"
+
+  dashboard:
+    image: nousresearch/hermes-agent:latest
+    container_name: ${CONTAINER_NAME:-hermes}_dashboard
+    restart: unless-stopped
+    # 绑定 0.0.0.0 时上游要求 --insecure；仅适合受信网络/内网，公网需反向代理+鉴权
+    command: dashboard --host 0.0.0.0 --insecure
+    ports:
+      - "${DASHBOARD_PORT:-9119}:9119"
+    volumes:
+      - ${DATA_PATH:-$PWD}:/opt/data
+    environment:
+      - GATEWAY_HEALTH_URL=http://hermes:8642
+    networks:
+      - hermes-net
+    depends_on:
+      - hermes
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "0.5"
+
+networks:
+  hermes-net:
+    driver: bridge
