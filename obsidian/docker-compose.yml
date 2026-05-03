@@ -1,0 +1,17 @@
+services:
+  obsidian:
+    image: linuxserver/obsidian:latest
+    container_name: ${CONTAINER_NAME:-obsidian}
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3005}:3000"
+    volumes:
+      - ${DATA_PATH:-$PWD}:/config
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - web_net
+
+networks:
+  web_net:
+    external: true
