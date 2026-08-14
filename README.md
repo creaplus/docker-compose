@@ -6,6 +6,7 @@
 
 - **dify** - Dify AI 应用开发平台
 - **firecrawl** - 网页爬虫服务
+- **homeassistant** - Home Assistant 智能家居（Container，host 网络）
 - **lobe-chat** - LobeChat AI 聊天服务
 - **minio** - MinIO 对象存储服务
 - **monitor** - Prometheus + Grafana 监控系统
@@ -13,6 +14,7 @@
 - **mysql** - MySQL 数据库服务
 - **neo4j** - Neo4j 图数据库服务
 - **open-webui** - OpenWebUI 界面服务
+- **omniroute** - OmniRoute 统一 AI 网关（复用宿主机 Redis）
 - **postgres** - PostgreSQL 数据库服务
 - **redis** - Redis 缓存服务
 - **rustdesk** - RustDesk 远程控制服务
@@ -37,6 +39,7 @@ docker compose up -d
 
 - Web 服务统一使用 `web_net` 网络
 - 监控服务统一使用 `monitor_net` 网络,关联 `web_net`
+- Home Assistant 使用宿主机 `host` 网络，便于发现局域网设备
 
 ## 系统要求
 
@@ -53,11 +56,13 @@ docker compose up -d
 
 - [Dify 配置说明](/dify/README.md)
 - [Firecrawl 配置说明](/firecrawl/README.md)
+- [Home Assistant 配置说明](/homeassistant/readme.md)
 - [MinIO 配置说明](/minio/README.md)
 - [监控系统配置说明](/monitor/README.md)
 - [MySQL 配置说明](/mysql/README.md)
 - [Neo4j 配置说明](/neo4j/README.md)
 - [OpenWebUI 配置说明](/open-webui/README.md)
+- [OmniRoute 配置说明](/omniroute/readme.md)
 - [PostgreSQL 配置说明](/postgres/README.md)
 - [Redis 配置说明](/redis/README.md)
 - [RustDesk 配置说明](/rustdesk/README.md)

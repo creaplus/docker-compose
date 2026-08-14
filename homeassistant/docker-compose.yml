@@ -1,0 +1,24 @@
+services:
+  homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: ${CONTAINER_NAME:-homeassistant}
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - apparmor:unconfined
+    environment:
+      TZ: ${TZ:-Asia/Shanghai}
+    volumes:
+      - ${DATA_PATH:-$PWD}/config:/config
+      - /etc/localtime:/etc/localtime:ro
+      # Bluetooth 集成需要宿主机 D-Bus / BlueZ
+      - /run/dbus:/run/dbus:ro
+    # host 模式下 ports 无效，Web UI 直接占用宿主机 8123
+    # USB Zigbee / Z-Wave 等设备可按需取消注释，并用 `ls /dev/serial/by-id/` 确认路径
+    # devices:
+    #   - /dev/ttyUSB0:/dev/ttyUSB0
+    #   - /dev/ttyACM0:/dev/ttyACM0
