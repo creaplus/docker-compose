@@ -13,6 +13,7 @@
 - **mongodb** - MongoDB 数据库服务
 - **mysql** - MySQL 数据库服务
 - **neo4j** - Neo4j 图数据库服务
+- **obsidian** - Obsidian 笔记（linuxserver Web 桌面，web_net）
 - **open-webui** - OpenWebUI 界面服务
 - **omniroute** - OmniRoute 统一 AI 网关（复用宿主机 Redis）
 - **postgres** - PostgreSQL 数据库服务
@@ -61,6 +62,7 @@ docker compose up -d
 - [监控系统配置说明](/monitor/README.md)
 - [MySQL 配置说明](/mysql/README.md)
 - [Neo4j 配置说明](/neo4j/README.md)
+- [Obsidian 配置说明](/obsidian/readme.md)
 - [OpenWebUI 配置说明](/open-webui/README.md)
 - [OmniRoute 配置说明](/omniroute/readme.md)
 - [PostgreSQL 配置说明](/postgres/README.md)
