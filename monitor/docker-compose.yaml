@@ -11,7 +11,7 @@ services:
     image: grafana/grafana
     container_name: ${CONTAINER_NAME:-monitor}_grafana
     ports:
-      - "3000:3000"
+      - "9030:3000"
     restart: unless-stopped
     user: root
     environment:
@@ -45,27 +45,3 @@ services:
       - mysqlexporter
     networks:
       - monitor-br
-
-  mysqlexporter:
-    image: prom/mysqld-exporter
-    container_name: ${CONTAINER_NAME:-monitor}_mysqlexporter
-    # ports:
-    #   - "9104:9104"
-    environment:
-      - DATA_SOURCE_NAME=monitor:monitor@(192.168.3.2:3306)/
-    volumes:
-      - $PWD/conf/exporter/.my.cnf:/.my.cnf
-    restart: unless-stopped
-    networks:
-      - monitor-br
-
-  # redisexporter:
-  #   image: oliver006/redis_exporter
-  #   container_name: ${CONTAINER_NAME:-monitor}_redisexporter
-  #   # ports:
-  #   #   - "9121:9121"
-  #   environment:
-  #     - REDIS_ADDR=redis://192.168.3.2:6379
-  #     - REDIS_PASSWORD=sj4ykQRd
-  #   networks:
-  #     - monitor-br
